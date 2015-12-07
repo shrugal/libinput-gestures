@@ -1,0 +1,10 @@
+[Unit]
+Description=Touchpad gesture recognition using libinput
+After=display-manager.service
+
+[Service]
+Environment=DISPLAY=:0 XAUTHORITY=/run/user/1000/gdm/Xauthority
+ExecStart=/usr/bin/gestures
+
+[Install]
+WantedBy=multi-user.target
