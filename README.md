@@ -7,23 +7,23 @@ DISCLAIMER: This is a script I made for myself because no other method (touchegg
 These are just the default settings, you can customize them at the start of the gestures.sh script.
 
 ### 3 finger gestures
-Right: Back (Alt+Left)
-Left: Forward (Alt+Right)
-Up: Overview (Super)
-Down: Show desktop (Super+D)
+- Right: Back (Alt+Left)
+- Left: Forward (Alt+Right)
+- Up: Overview (Super)
+- Down: Show desktop (Super+D)
 
 ### 4 finger gestures
-Right: Move window to the right (Super+Right)
-Left: Move window to the left (Super+Left)
-Up: Maximize window (Super+Up)
-Down: Minimize window (Super+Down)
+- Right: Move window to the right (Super+Right)
+- Left: Move window to the left (Super+Left)
+- Up: Maximize window (Super+Up)
+- Down: Minimize window (Super+Down)
 
 ## Prerequisites
 The script depends on the following executables beeing available in your PATH:
 - libinput-debug-events
 - xdotool
 
-Please check your preferred search engine for how you can install them for you destribution. Since the script depends on xdotool, it probably won't work with wayland.
+Please check your preferred search engine for how to install them. Since the script depends on xdotool, it probably won't work with wayland.
 
 ## Usage
 Run the following command (with root privileges):
@@ -32,7 +32,7 @@ Run the following command (with root privileges):
 ```
 
 ## Installation (start at boot)
-Currently this depends on your UID beeing 1000 and gdm, but you can probably change that in the gestures.service file if need be.
+Currently this depends on gdm and your UID beeing 1000, but you can probably change that in the gestures.service file if need be.
 
 Run the following commands (with root privileges):
 ```
