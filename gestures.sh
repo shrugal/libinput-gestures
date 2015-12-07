@@ -77,8 +77,6 @@ while read line; do
             fi
 
             key="$fingers+$dir"
-            #echo $DISPLAY
-            #echo $XAUTHORITY
             xdotool key ${keys[$key]}
             ;;
 
