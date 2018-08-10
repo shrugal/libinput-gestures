@@ -1,42 +1,43 @@
-# libinput-gestures
-A small script to read from libinput-debug-events and trigger key commands depending on recognized gestures. Libinput actually does all the hard work tracking the input and recognizing gestures, it just doesn't do anything with these other than outputting them. This script is kind of a missing link to put libinput's gesture recognition to good use, until there is proper support in GNOME etc.
+# wayland-mouse-mapper
+A small script for mapping mouse buttons to keystrokes on Wayland.
 
-DISCLAIMER: This is a script I made for myself because no other method (touchegg, xswipe, synaptics-driver etc.) seemed to work on my Dell XPS 13 (late 2015) running Fedora 23. It works for me and should work for any libinput based desktop environment aswell, but your milage may vary.
+I made for myself to use my mouse extra buttons for useful stuff.
+It's tested and works with Logitech MX Master 2S on Fedora 27 using Gnome,
+and works it on my old Logitech Performance MX too.
+It probably works on any Wayland and Any Logitech mouse (or any mouse if you edit mappings)
+because no other method (xdotools, xbindkeys, etc.) seemed to work.
 
-## Gestures
-These are just the default settings, you can customize them at the start of the gestures.sh script.
+It works by reading from `libinput debug-events` and triggering key events using `evemu`
+depending on the recognized button from the recognized device.
 
-### 3 finger gestures
-- Right: Back (Alt+Left)
-- Left: Forward (Alt+Right)
-- Up: Overview (Super)
-- Down: Show desktop (Super+D)
+Feel free to make PRs to make it configurable or to add more mappings
 
-### 4 finger gestures
-- Right: Move window to the right (Super+Right)
-- Left: Move window to the left (Super+Left)
-- Up: Maximize window (Super+Up)
-- Down: Minimize window (Super+Down)
+## Buttons
+These are just the default settings, you can customize them at the start of the mousemapper.sh script.
+
+- Forward: Move to workspace above  (Super+Page up)
+- Back: Move to workspace below  (Super+Page down)
 
 ## Prerequisites
-The script depends on the following executables beeing available in your PATH:
-- libinput-debug-events
-- xdotool
+The script depends on the following executables being available in your PATH:
+- libinput
+- evemu
 
-Please check your preferred search engine for how to install them. Since the script depends on xdotool, it probably won't work with wayland.
+to install those just run the following command (with root privileges):
+```
+dnf -y install libinput evemu
+```
 
 ## Usage
 Run the following command (with root privileges):
 ```
-./gestures.sh
+./mousemapper.sh
 ```
 
 ## Installation (start at boot)
-Currently this depends on gdm and your UID beeing 1000, but you can probably change that in the gestures.service file if need be.
-
 Run the following commands (with root privileges):
 ```
-cp gestures.sh /usr/bin/gestures
-cp gestures.service /usr/lib/systemd/system/
-systemctl enable gestures.service
+cp mousemapper.sh /usr/bin/mousemapper
+cp mousemapper.service /usr/lib/systemd/system/
+systemctl enable mousemapper.service
 ```

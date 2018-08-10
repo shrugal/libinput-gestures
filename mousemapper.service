@@ -1,0 +1,9 @@
+[Unit]
+Description=Mouse button mapping that works on wayland
+After=display-manager.service
+
+[Service]
+ExecStart=/usr/bin/mousemapper
+
+[Install]
+WantedBy=multi-user.target
