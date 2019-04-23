@@ -51,8 +51,24 @@ function mapDevice(){
     done < <(stdbuf -oL libinput debug-events --device ${device} & )
 }
 
+if [[ ${devices[0]} == '' ]]; then
+  echo "No Pointers Found. Try again."
+  exit 1
+fi
+
 for device in ${devices[@]}; do
     ( mapDevice ${device} ) &
 done
+
+while :; do
+  for device in ${devices[@]}; do
+    if [ ! -e ${device} ]; then
+      echo "Pointer disconnected."
+      exit 1
+    fi
+  done
+  sleep 5
+done
+
 
 wait
