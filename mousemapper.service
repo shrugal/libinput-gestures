@@ -4,6 +4,9 @@ After=display-manager.service
 
 [Service]
 ExecStart=/usr/bin/mousemapper
+RemainAfterExit=no
+Restart=on-failure
+RestartSec=5s
 
 [Install]
 WantedBy=multi-user.target
