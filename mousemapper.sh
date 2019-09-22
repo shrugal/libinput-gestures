@@ -1,5 +1,6 @@
 #!/bin/bash
 
+keyboard=$(libinput list-devices | grep keyboard -B4 | grep -E "keyboard$" -A1 | grep -o '/dev/input/event[1-9]*')
 event_type=EV_KEY
 action_type=POINTER_BUTTON
 pressed="pressed,"
@@ -13,7 +14,7 @@ BTN_SIDE=(KEY_LEFTMETA KEY_PAGEDOWN)
 function pressKey(){
     device=$1; key=$2; value=$3
     echo "pressing ${key} ${value}"
-    evemu-event /dev/input/${device} --sync --type ${event_type} --code ${key} --value ${value};
+    evemu-event ${keyboard} --sync --type ${event_type} --code ${key} --value ${value};
 }
 
 function pressCommand(){
